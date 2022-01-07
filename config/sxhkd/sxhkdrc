@@ -1,0 +1,134 @@
+#=========================================================
+#-------------------APPLICATION
+#=========================================================
+
+super + Return 
+	kitty
+
+super + space 
+	kitty
+
+super + a
+	rofi -show drun
+
+super + alt + {g,v,m,f}
+	{google-chrome,code,firefox,thunar}
+
+super + alt + {a,c}
+	kitty -e {alsamixer,calcurse}
+
+#=======================================================
+#------------------SYSTEM CONTROL
+#======================================================
+
+#lock
+#super + F10
+#	betterlockscreen -l
+
+#logout
+super + F12
+	bspc quit
+
+#suspend
+Scroll_Lock
+	systemctl suspend
+
+#screenshot
+Print
+	xfce4-screenshooter -f -s ~/Pictures/ss/$(date +%s).png
+
+#reload sxhkd
+super + alt + Escape
+	pkill -USR1 -x sxhkd
+
+#reload bspwm
+super + alt + r
+	bspc wm -r
+
+#brightness 
+super + F2
+	xrandr --output eDP --brightness 0
+super + F3
+	xrandr --output eDP --brightness 0.9
+#=======================================================
+#-----------------MULTIMEDIA
+#=======================================================
+
+#increase volume
+super + F8
+	amixer set Master 5%+
+
+#decrease volume
+super + F7
+	amixer set Master 5%-
+
+#mute audio
+super + F6
+	amixer -D pulse set Master 1+ toggle
+
+#=======================================================
+#-----------------BSPWM
+#=======================================================
+
+#close and kill node
+super + {_,shift + }q
+	bspc node -{c,k}
+
+#cycle node
+super + Tab
+	bspc node -f next.local.!hidden.window
+
+#cycle desktop
+super + grave
+	bspc desktop -f next.local
+
+#alternate tiled and monocle
+super + m 
+	bspc desktop -l next
+
+#set master
+
+#focus/swap node in given direction 
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+#focus last desktop
+super + Caps_Lock
+	bspc desktop -f last
+
+#focus dektop
+super + {1-9}
+	bspc desktop -f '^{1-9}'
+
+#send node to desktop
+super + shift + {1-9}
+	bspc node -d '^{1-9}' --follow
+
+#set window state
+super + {f,t,shift + f}
+	bspc node -t {fullscreen,tiled,floating}
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#focus next monitor
+alt + grave
+	bspc monitor -f next
+
+
+
+#super + o:{f,v,m,g,t}
+#	{thunar,code,firefox,google-chrome,kitty}
+#
+#
+#
+#	// xev /xorg-xev
