@@ -5,9 +5,10 @@
 #============================================
 ~/.fehbg &
 killall picom
-picom &
+picom  &
+nm-applet &
 pgrep -x sxhkd > /dev/null || sxhkd &
-#polybar eDP 2>&1 | tee -a /tmp/polybar.log & disown
+nitrogen --restore &
 killall polybar
 polybar eDP &
 polybar HDMI &

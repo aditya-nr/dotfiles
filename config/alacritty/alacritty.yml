@@ -1,0 +1,14 @@
+font:
+  normal:
+    # family: "Hack Nerd Font Mono"
+    family : "Fira Code Light"
+    style: "Regular"
+  size: 11
+  hinting: true
+  antialiasing: true
+
+window:
+  opacity: 0.95
+  padding:
+    x: 10
+    y: 10

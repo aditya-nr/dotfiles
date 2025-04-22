@@ -3,72 +3,64 @@
 #=========================================================
 
 super + Return 
-	kitty
+	konsole
 
 super + space 
-	kitty
+	alacritty
 
 super + a
 	rofi -show drun
 
 super + alt + {g,v,m,f}
-	{google-chrome,code,firefox,thunar}
+	{google-chrome,code,firefox,pcmanfm}
 
-super + alt + {a,c}
-	kitty -e {alsamixer,calcurse}
+super + alt + {a}
+	alacritty -e {alsamixer}
+
 
 #=======================================================
 #------------------SYSTEM CONTROL
 #======================================================
 
-#lock
-#super + F10
-#	betterlockscreen -l
-
 #logout
 super + F12
 	bspc quit
-
-#suspend
-Scroll_Lock
-	systemctl suspend
-
-#screenshot
-Print
-	xfce4-screenshooter -f -s ~/Pictures/ss/$(date +%s).png
 
 #reload sxhkd
 super + alt + Escape
 	pkill -USR1 -x sxhkd
 
-#reload bspwm
-super + alt + r
-	bspc wm -r
+# brightness down
+XF86MonBrightnessDown
+	brightnessctl  s 5%-
 
-#brightness 
-super + F2
-	xrandr --output eDP --brightness 0
-super + F3
-	xrandr --output eDP --brightness 0.9
-#=======================================================
-#-----------------MULTIMEDIA
-#=======================================================
+# birghtness up
+XF86MonBrightnessUp
+	brightnessctl  s +5%
+
+# lock screen
+XF86AudioPlay
+	slock
 
 #increase volume
-super + F8
+XF86AudioRaiseVolume
 	amixer set Master 5%+
 
 #decrease volume
-super + F7
+XF86AudioLowerVolume
 	amixer set Master 5%-
 
 #mute audio
-super + F6
+XF86AudioMute
 	amixer -D pulse set Master 1+ toggle
 
 #=======================================================
 #-----------------BSPWM
 #=======================================================
+
+#reload bspwm
+super + alt + r
+	bspc wm -r
 
 #close and kill node
 super + {_,shift + }q
@@ -124,11 +116,3 @@ super + {Left,Down,Up,Right}
 alt + grave
 	bspc monitor -f next
 
-
-
-#super + o:{f,v,m,g,t}
-#	{thunar,code,firefox,google-chrome,kitty}
-#
-#
-#
-#	// xev /xorg-xev

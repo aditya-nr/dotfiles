@@ -1,0 +1,123 @@
+{
+    "window.zoomLevel": 0.5,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+      "**/.classpath": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/.factorypath": true
+    },
+    "editor.fontSize": 18,
+    "vim.leader": "<Space>",
+    "vim.insertModeKeyBindingsNonRecursive": [
+      {
+        "before": ["j", "k"],
+        "after": ["<ESC>"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<C-h>"],
+        "after": ["<C-w>", "h"]
+      },
+      {
+        "before": ["<C-j>"],
+        "after": ["<C-w>", "j"]
+      },
+      {
+        "before": ["<C-k>"],
+        "after": ["<C-w>", "k"]
+      },
+      {
+        "before": ["<C-l>"],
+        "after": ["<C-w>", "l"]
+      },
+      {
+        "before": ["<Leader>", "t", "t"],
+        "commands": [":tabnew"]
+      },
+      {
+        "before": ["<Leader>", "t", "n"],
+        "commands": [":tabnext"]
+      },
+      {
+        "before": ["<Leader>", "t", "p"],
+        "commands": [":tabprev"]
+      },
+      {
+        "before": ["<Leader>", "t", "o"],
+        "commands": [":tabo"]
+      },
+      {
+        "before": ["leader", "w"],
+        "commands": [
+            "workbench.action.files.save"
+        ]
+      },
+      {
+        "before": ["<Leader>", "p"],
+        "commands": [
+            "workbench.action.showCommands"
+        ]
+      },
+      {
+        "before": ["<Leader>", "a"],
+        "commands": [
+            "workbench.action.terminal.toggleTerminal"
+        ]
+      },
+      {
+        "before": ["<Leader>", "p"],
+        "commands": [
+            "workbench.action.showCommands"
+        ]
+      },
+      {
+        "before": ["<Leader>", "r"],
+        "commands": [
+            "code-runner.run"
+        ]
+      },
+      {
+        "before": ["J"],
+        "after": ["5", "j"]
+      },
+      {
+        "before": ["K"],
+        "after": ["5", "k"]
+      },
+      {
+        "before": ["<Leader>", "j"],
+        "after": ["J"]
+      }
+    ],
+    "terminal.integrated.fontFamily": "Fira Code Light , Hack Nerd Font Mono",
+    "editor.cursorBlinking": "expand",
+    "editor.fontFamily": "'Fira Code Light'",
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "explorer.confirmDelete": false,
+    "terminal.integrated.fontSize": 15,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.startupEditor": "none",
+    "editor.minimap.enabled": false,
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "workbench.activityBar.location": "hidden",
+    "workbench.layoutControl.enabled": false,
+    "window.titleBarStyle": "native",
+    "window.menuBarVisibility": "toggle",
+    "workbench.editor.editorActionsLocation": "titleBar",
+    "window.customTitleBarVisibility": "never",
+    "window.confirmSaveUntitledWorkspace": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "chat.commandCenter.enabled": false
+  }
+  
