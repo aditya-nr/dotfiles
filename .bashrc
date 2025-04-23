@@ -46,13 +46,13 @@ parse_git_branch() {
 
     # Extract branch name
     BRANCH=$(grep "^# branch.head" "$FILE" | awk '{print $3}')
-    [[ -n "$BRANCH" ]] && DISP="($BRANCH"
+    [[ -n "$BRANCH" ]] && DISP=" $BRANCH ["
 
-    # Modified files (index != worktree)
+    # Modified files
     MODIFIED=$(grep ^"1 .M" "$FILE" | wc -l)
     [[ $MODIFIED -gt 0 ]] && DISP="$DISP M"
 
-    # Deleted files (deleted in working directory)
+    # Deleted files 
     DELETED=$(grep ^"1 .D" "$FILE" | wc -l)
     [[ $DELETED -gt 0 ]] && DISP="$DISP D"
 
@@ -60,15 +60,15 @@ parse_git_branch() {
     UNTRACKED=$(grep ^"? " "$FILE" | wc -l)
     [[ $UNTRACKED -gt 0 ]] && DISP="$DISP U"
 
-    # Staged changes (in index, ready to commit)
+    # Staged changes (ready to commit)
     STAGED=$(grep "^1 " "$FILE" | grep -E "^1 [A-Z]" | wc -l)
-    [[ $STAGED -gt 0 ]] && DISP="$DISP c"
+    [[ $STAGED -gt 0 ]] && DISP="$DISP "
 
-    # Check if there is something to push
+    # something to push
     AHEAD=$(grep "^# branch.ab" "$FILE" | awk '{print $3}' | tr -d '+')
-    [[ "$AHEAD" -gt 0 ]] 2>/dev/null && DISP="$DISP P"
+    [[ "$AHEAD" -gt 0 ]] 2>/dev/null && DISP="$DISP "
 
-    DISP="$DISP)"
+    DISP="$DISP ]"
 
     echo "$DISP"
 }
