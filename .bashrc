@@ -35,7 +35,42 @@ RED="\[\e[31m\]"
 
 # Git branch function
 parse_git_branch() {
- git branch 2>/dev/null | grep '*' | sed 's/* //'
+    # Check if we're in a Git repo
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+
+    FILE="/tmp/promptgit.txt"
+    DISP=""
+
+    # Get git status
+    git status --porcelain=2 --branch > "$FILE"
+
+    # Extract branch name
+    BRANCH=$(grep "^# branch.head" "$FILE" | awk '{print $3}')
+    [[ -n "$BRANCH" ]] && DISP="($BRANCH"
+
+    # Modified files (index != worktree)
+    MODIFIED=$(grep ^"1 .M" "$FILE" | wc -l)
+    [[ $MODIFIED -gt 0 ]] && DISP="$DISP M"
+
+    # Deleted files (deleted in working directory)
+    DELETED=$(grep ^"1 .D" "$FILE" | wc -l)
+    [[ $DELETED -gt 0 ]] && DISP="$DISP D"
+
+    # Untracked files
+    UNTRACKED=$(grep ^"? " "$FILE" | wc -l)
+    [[ $UNTRACKED -gt 0 ]] && DISP="$DISP U"
+
+    # Staged changes (in index, ready to commit)
+    STAGED=$(grep "^1 " "$FILE" | grep -E "^1 [A-Z]" | wc -l)
+    [[ $STAGED -gt 0 ]] && DISP="$DISP c"
+
+    # Check if there is something to push
+    AHEAD=$(grep "^# branch.ab" "$FILE" | awk '{print $3}' | tr -d '+')
+    [[ "$AHEAD" -gt 0 ]] 2>/dev/null && DISP="$DISP P"
+
+    DISP="$DISP)"
+
+    echo "$DISP"
 }
 
 # First line: user@host path [git branch]
